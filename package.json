@@ -1,0 +1,29 @@
+{
+  "name": "hashcache",
+  "version": "0.0.0",
+  "description": "A simple way to cache key/value pairs in an in-memory hash.",
+  "main": "index.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ben-bradley/hashcache"
+  },
+  "keywords": [
+    "hash",
+    "object",
+    "cache",
+    "memory"
+  ],
+  "author": "Ben Bradley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ben-bradley/hashcache/issues"
+  },
+  "homepage": "https://github.com/ben-bradley/hashcache"
+}
