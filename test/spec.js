@@ -36,7 +36,6 @@ describe('HashCache', function () {
         (cache.peek('key1')).should.equal('value1');
       }, 2000);
       setTimeout(function () {
-        console.log(cache.peek('key1'));
         (cache.peek('key1') === undefined).should.be.true;
         done();
       }, 3500);
