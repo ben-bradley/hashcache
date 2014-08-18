@@ -72,6 +72,27 @@ describe('HashCache', function () {
       }, 3500);
     });
 
+    it('should never expire with { expires: 0 }', function (done) {
+      this.timeout(5000);
+      var cache = new HashCache({
+        expires: 0
+      });
+      cache.set('key1', 'value1');
+      setTimeout(function () {
+        (cache.peek('key1') === 'value1').should.be.true;
+      }, 2000);
+      setTimeout(function () {
+        (cache.peek('key1') === 'value1').should.be.true;
+      }, 3500);
+      setTimeout(function () {
+        (cache.peek('key1') === 'value1').should.be.true;
+      }, 4500);
+      setTimeout(function () {
+        (cache.peek('key1') === 'value1').should.be.true;
+        done();
+      }, 4950);
+    });
+
   });
 
 });

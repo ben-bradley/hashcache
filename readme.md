@@ -16,6 +16,7 @@ A simple bit of code for creating an in-memory object store/cache.  LRU Cache ha
 var HashCache = require('../');
 
 var cache = new HashCache({
+  // expires: 0 // never expire
   expires: 1000 * 10 // 1000ms * 10 = 10sec expiration for items
 });
 
