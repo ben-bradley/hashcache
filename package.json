@@ -25,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/ben-bradley/hashcache/issues"
   },
-  "homepage": "https://github.com/ben-bradley/hashcache"
+  "homepage": "https://github.com/ben-bradley/hashcache",
+  "devDependencies": {
+    "should": "^4.0.4",
+    "mocha": "^1.21.4"
+  }
 }
