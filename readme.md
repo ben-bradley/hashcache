@@ -27,6 +27,21 @@ setInterval(function () {
   console.log(cache.get('key1'));
 }, 1000);)
 ```
+
+## Methods
+
+### __`get('key')`__
+
+Returns the cached value associated with `'key'` and reset the expiration timer.
+
+### __`peek('key')`__
+
+Returns the cached value associated with `'key'` and does NOT reset the expiration timer.
+
+### __`set('key', 'value')`__
+
+Sets a new cached value
+
 ## Test
 
 `npm test`
