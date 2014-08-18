@@ -1,6 +1,6 @@
 {
   "name": "hashcache",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple way to cache key/value pairs in an in-memory hash.",
   "main": "index.js",
   "directories": {
