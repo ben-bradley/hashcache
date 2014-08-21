@@ -1,4 +1,4 @@
-# Hash Cache
+# Hash Cache [![Build Status](https://secure.travis-ci.org/ben-bradley/hashcache.png)](http://travis-ci.org/ben-bradley/hashcache)
 
 A simple bit of code for creating an in-memory object store/cache.  LRU Cache has a lot more bells & whistles if you're looking for something production ready.
 
