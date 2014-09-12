@@ -26,50 +26,50 @@ describe('HashCache', function () {
 
   describe('.get(), .set(), .peek()', function () {
 
-    it('should cache a value for 3 sec', function (done) {
+    it('should cache a value for 100ms (peeking)', function (done) {
       this.timeout(5000);
       var cache = new HashCache({
-        expires: 1000 * 3
+        expires: 100
       });
       cache.set('key1', 'value1');
       setTimeout(function () {
         (cache.peek('key1')).should.equal('value1');
-      }, 2000);
+      }, 50);
       setTimeout(function () {
         (cache.peek('key1') === undefined).should.be.true;
         done();
-      }, 3500);
+      }, 150);
     });
 
-    it('should cache a value for 4 sec', function (done) {
+    it('should cache a value for 150ms (getting)', function (done) {
       this.timeout(5000);
       var cache = new HashCache({
-        expires: 1000 * 3
+        expires: 100
       });
       cache.set('key1', 'value1');
       setTimeout(function () {
         // calling .get() resets the timeout
         (cache.get('key1')).should.equal('value1');
-      }, 1000);
+      }, 50);
       setTimeout(function () {
         (cache.peek('key1') === undefined).should.be.true;
         done();
-      }, 4500);
+      }, 300);
     });
 
     it('.get("invalid_key") should be undefined', function (done) {
       this.timeout(5000);
       var cache = new HashCache({
-        expires: 1000 * 3
+        expires: 100
       });
       cache.set('key1', 'value1');
       setTimeout(function () {
         (cache.peek('invalid_key') === undefined).should.be.true;
-      }, 2000);
+      }, 50);
       setTimeout(function () {
         (cache.peek('key1') === undefined).should.be.true;
         done();
-      }, 3500);
+      }, 150);
     });
 
     it('should never expire with { expires: 0 }', function (done) {
@@ -80,33 +80,33 @@ describe('HashCache', function () {
       cache.set('key1', 'value1');
       setTimeout(function () {
         (cache.peek('key1')).should.equal('value1');
-      }, 2000);
+      }, 100);
       setTimeout(function () {
         (cache.peek('key1')).should.equal('value1');
-      }, 3500);
+      }, 500);
       setTimeout(function () {
         (cache.peek('key1')).should.equal('value1');
-      }, 4500);
+      }, 1000);
       setTimeout(function () {
         (cache.peek('key1')).should.equal('value1');
         done();
-      }, 4950);
+      }, 1500);
     });
 
     it('should allow for updating values before expiration', function (done) {
       var cache = new HashCache({
-        expires: 500
+        expires: 250
       });
       cache.set('key1', 'value1', function (update) {
         setTimeout(function () {
           update('value2');
-        });
+        }, 50);
       });
       (cache.peek('key1')).should.equal('value1');
       setTimeout(function () {
         (cache.peek('key1')).should.equal('value2');
         done();
-      }, 600);
+      }, 450);
 
     });
 
