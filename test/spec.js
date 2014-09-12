@@ -69,7 +69,7 @@ describe('HashCache', function () {
       setTimeout(function () {
         (cache.peek('key1') === undefined).should.be.true;
         done();
-      }, 150);
+      }, 250);
     });
 
     it('should never expire with { expires: 0 }', function (done) {
