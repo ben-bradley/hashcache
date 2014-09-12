@@ -13,7 +13,7 @@ A simple bit of code for creating an in-memory object store/cache.  LRU Cache ha
 ## Use
 
 ```js
-var HashCache = require('../');
+var HashCache = require('hashcache');
 
 var cache = new HashCache({
   // expires: 0 // never expire
@@ -39,9 +39,24 @@ Returns the cached value associated with `'key'` and reset the expiration timer.
 
 Returns the cached value associated with `'key'` and does NOT reset the expiration timer.
 
-### __`set('key', 'value')`__
+### __`set('key', value, [update])`__
 
 Sets a new cached value
+
+- `key` = a string value to reference the element
+- `value` = the variable data that you want to cache
+- `update` = _(optional)_ a callback to update the value of the element
+
+```
+var cache = new HashCache({
+  expires: 100
+});
+
+cache.set('key1', 'value1', function(update) {
+  // do something to get a newValue
+  update(newValue);
+});
+```
 
 ## Test
 

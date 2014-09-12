@@ -79,18 +79,35 @@ describe('HashCache', function () {
       });
       cache.set('key1', 'value1');
       setTimeout(function () {
-        (cache.peek('key1') === 'value1').should.be.true;
+        (cache.peek('key1')).should.equal('value1');
       }, 2000);
       setTimeout(function () {
-        (cache.peek('key1') === 'value1').should.be.true;
+        (cache.peek('key1')).should.equal('value1');
       }, 3500);
       setTimeout(function () {
-        (cache.peek('key1') === 'value1').should.be.true;
+        (cache.peek('key1')).should.equal('value1');
       }, 4500);
       setTimeout(function () {
-        (cache.peek('key1') === 'value1').should.be.true;
+        (cache.peek('key1')).should.equal('value1');
         done();
       }, 4950);
+    });
+
+    it('should allow for updating values before expiration', function (done) {
+      var cache = new HashCache({
+        expires: 500
+      });
+      cache.set('key1', 'value1', function (update) {
+        setTimeout(function () {
+          update('value2');
+        });
+      });
+      (cache.peek('key1')).should.equal('value1');
+      setTimeout(function () {
+        (cache.peek('key1')).should.equal('value2');
+        done();
+      }, 600);
+
     });
 
   });
