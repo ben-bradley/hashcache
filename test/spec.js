@@ -26,7 +26,7 @@ describe('HashCache', function () {
 
   describe('.get(), .set(), .peek()', function () {
 
-    it('should cache a value for 100ms (peeking)', function (done) {
+    it('should cache a value for 250ms (peeking)', function (done) {
       this.timeout(5000);
       var cache = new HashCache({
         expires: 100
@@ -38,10 +38,10 @@ describe('HashCache', function () {
       setTimeout(function () {
         (cache.peek('key1') === undefined).should.be.true;
         done();
-      }, 150);
+      }, 250);
     });
 
-    it('should cache a value for 150ms (getting)', function (done) {
+    it('should cache a value for 350ms (getting)', function (done) {
       this.timeout(5000);
       var cache = new HashCache({
         expires: 100
@@ -54,7 +54,7 @@ describe('HashCache', function () {
       setTimeout(function () {
         (cache.peek('key1') === undefined).should.be.true;
         done();
-      }, 300);
+      }, 350);
     });
 
     it('.get("invalid_key") should be undefined', function (done) {
@@ -69,7 +69,7 @@ describe('HashCache', function () {
       setTimeout(function () {
         (cache.peek('key1') === undefined).should.be.true;
         done();
-      }, 250);
+      }, 350);
     });
 
     it('should never expire with { expires: 0 }', function (done) {
@@ -95,7 +95,7 @@ describe('HashCache', function () {
 
     it('should allow for updating values before expiration', function (done) {
       var cache = new HashCache({
-        expires: 250
+        expires: 100
       });
       cache.set('key1', 'value1', function (update) {
         setTimeout(function () {
@@ -106,7 +106,7 @@ describe('HashCache', function () {
       setTimeout(function () {
         (cache.peek('key1')).should.equal('value2');
         done();
-      }, 450);
+      }, 350);
 
     });
 
